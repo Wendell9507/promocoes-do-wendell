@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Promoções do Wendell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
+    header { background: #ff6600; color: white; padding: 20px; text-align: center; }
+    .container { padding: 20px; max-width: 800px; margin: auto; }
+    .promo { background: white; margin: 20px 0; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .promo h2 { margin-top: 0; font-size: 1.2em; }
+    .promo a { color: #ff6600; text-decoration: none; font-weight: bold; }
+    form { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    input, textarea { width: 100%; margin: 10px 0; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 1em; }
+    button { background: #ff6600; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; }
+    footer { text-align: center; padding: 10px; background: #ddd; margin-top: 40px; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Promoções do Wendell</h1>
+  <p>Ofertas selecionadas e atualizadas manualmente</p>
+</header>
+
+<div class="container">
+  <form id="promoForm">
+    <h2>Adicionar nova promoção</h2>
+    <input type="text" id="titulo" placeholder="Título da promoção" required>
+    <textarea id="descricao" placeholder="Descrição (preço, cupom, parcelamento)" required></textarea>
+    <input type="url" id="link" placeholder="Link da oferta" required>
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <div id="listaPromocoes"></div>
+</div>
+
+<footer>
+  <p>Site criado por Wendell9507 — atualizado manualmente</p>
+</footer>
+
+<script>
+  const form = document.getElementById('promoForm');
+  const lista = document.getElementById('listaPromocoes');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const titulo = document.getElementById('titulo').value;
+    const descricao = document.getElementById('descricao').value;
+    const link = document.getElementById('link').value;
+
+    let icone = '🛍️';
+    if (titulo.toLowerCase().includes('ps5') || titulo.toLowerCase().includes('xbox')) icone = '🎮';
+    else if (titulo.toLowerCase().includes('controle') || titulo.toLowerCase().includes('headset')) icone = '🎧';
+    else if (titulo.toLowerCase().includes('tv') || titulo.toLowerCase().includes('monitor')) icone = '📺';
+
+    const bloco = document.createElement('div');
+    bloco.className = 'promo';
+    bloco.innerHTML = `<h2>${icone} ${titulo}</h2><p>${descricao}</p><a href="${link}" target="_blank">Ver oferta</a>`;
+    lista.prepend(bloco);
+
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
 
